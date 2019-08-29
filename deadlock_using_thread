@@ -1,0 +1,20 @@
+class DependentOperation: Operation {
+    private var valueToPrint: Int
+    
+    init(with value: Int) {
+        valueToPrint = value
+    }
+    
+    override func main() {
+        print(valueToPrint)
+    }
+}
+private var queue = OperationQueue()
+        let op1 = DependentOperation(with: 5)
+        let op2 = DependentOperation(with: 6)
+        
+        op1.addDependency(op2)
+        op2.addDependency(op1)
+        
+        queue.addOperation(op1)
+        queue.addOperation(op2)
